@@ -1,0 +1,19 @@
+{
+  "name": "astar.settings",
+  "displayName": "AStar Settings",
+  "description": "A light weight global settings toolkit, settings created can by edited in Project Settings",
+  "version": "0.0.1",
+  "unity": "2022.3",
+  "unityRelease": "15f1",
+  "dependencies": {
+  },
+  "relatedPackages": {
+  },
+  "documentationUrl": "https://github.com/0oSTrAngeRo0/AStar.Settings.git",
+  "repository": {
+    "url": "https://github.com/0oSTrAngeRo0/AStar.Settings.git",
+    "type": "git",
+    "revision": "2b29b1152946c13d1ecebf6fc681a59cd8b4d399"
+  }
+}
+  
