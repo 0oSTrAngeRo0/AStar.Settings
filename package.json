@@ -2,7 +2,7 @@
   "name": "astar.settings",
   "displayName": "AStar Settings",
   "description": "A light weight global settings toolkit, settings created can by edited in Project Settings",
-  "version": "0.0.1",
+  "version": "0.1.0",
   "unity": "2022.3",
   "unityRelease": "15f1",
   "dependencies": {
