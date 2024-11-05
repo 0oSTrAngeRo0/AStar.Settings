@@ -1,0 +1,16 @@
+{
+    "name": "AStar.Settings.Sample.Runtime",
+    "rootNamespace": "",
+    "references": [
+        "GUID:c2d707a636c26c24d8c2f72660c8b83e"
+    ],
+    "includePlatforms": [],
+    "excludePlatforms": [],
+    "allowUnsafeCode": false,
+    "overrideReferences": false,
+    "precompiledReferences": [],
+    "autoReferenced": true,
+    "defineConstraints": [],
+    "versionDefines": [],
+    "noEngineReferences": false
+}

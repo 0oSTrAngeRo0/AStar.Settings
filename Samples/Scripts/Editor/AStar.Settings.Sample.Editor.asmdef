@@ -1,0 +1,20 @@
+{
+    "name": "AStar.Settings.Sample.Editor",
+    "rootNamespace": "",
+    "references": [
+        "GUID:5d9f533826200124989b8ef9445135ea",
+        "GUID:c2d707a636c26c24d8c2f72660c8b83e",
+        "GUID:b2c80b0e8d80eef468b57ed28caac19a"
+    ],
+    "includePlatforms": [
+        "Editor"
+    ],
+    "excludePlatforms": [],
+    "allowUnsafeCode": false,
+    "overrideReferences": false,
+    "precompiledReferences": [],
+    "autoReferenced": true,
+    "defineConstraints": [],
+    "versionDefines": [],
+    "noEngineReferences": false
+}
