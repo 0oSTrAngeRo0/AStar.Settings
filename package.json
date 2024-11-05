@@ -14,6 +14,13 @@
     "url": "https://github.com/0oSTrAngeRo0/AStar.Settings.git",
     "type": "git",
     "revision": "2b29b1152946c13d1ecebf6fc681a59cd8b4d399"
-  }
+  },
+  "samples": [
+    {
+      "displayName": "Sample",
+      "description": "A sample setting and a generated project settings provider",
+      "path": "Samples~"
+    }
+  ]
 }
   
