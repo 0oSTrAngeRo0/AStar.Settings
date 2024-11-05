@@ -14,9 +14,7 @@ namespace AStar.Settings
 
         protected abstract TSettings GetInstance();
 
-        public SettingsProviderBase() : base($"Project/{typeof(TSettings).Name}", SettingsScope.Project, null)
-        {
-        }
+        public SettingsProviderBase() : base($"Project/{typeof(TSettings).Name}", SettingsScope.Project, null) { }
 
         public override void OnActivate(string searchContext, VisualElement rootElement)
         {

@@ -1,6 +1,5 @@
 using System;
 using System.IO;
-using System.Linq;
 using System.Reflection;
 using System.Text;
 using UnityEditor;
@@ -29,11 +28,15 @@ namespace AStar.Settings
             {
                 foreach (TypeInfo type in assembly.DefinedTypes)
                 {
-                    if (!IsSettings(type)) continue;
+                    if (!IsSettings(type, out string tip))
+                    {
+                        if (tip != null) LogMessageForClass(type, tip);
+                        continue;
+                    }
                     SourceCode code = GetSettingsProviderCode(type);
                     string filename = $"{code.ClassName}.gen.cs";
                     string path = CreateProviderFile(filename, code.Code);
-                    LogOnGenerated(assembly, type, filename);
+                    LogMessageForClass(type, filename);
                 }
             }
 
@@ -45,8 +48,7 @@ namespace AStar.Settings
             const string @namespace = "AStar.SettingsProviders";
             string fullname = type.FullName;
             string classname = $"{type.Name}Provider";
-            string code = $@"
-// This code is auto generated, don't edit it!
+            string code = $@"// This code is auto generated!
 
 namespace {@namespace}
 {{
@@ -87,24 +89,33 @@ namespace {@namespace}
             return path;
         }
 
-        private static bool IsSettings(Type type)
+        private static bool IsSettings(Type type, out string tip)
         {
-            string interfaceName = typeof(IEditOnProjectSettings).FullName;
-            string baseName = typeof(SettingsBase<>).Name;
-            const string targetAssemblyName = "AStar.Settings.Runtime";
+            tip = null;
+            if (type.GetInterface(typeof(IEditOnProjectSettings).FullName) == null) return false;
 
-            Type @base = type.BaseType;
-            if (@base == null) return false;
-            if (@base.Assembly.GetName().Name != targetAssemblyName) return false;
-            if (type.GetInterface(interfaceName) == null) return false;
-            if (!@base.Name.Contains(baseName)) return false;
+            if (!IsInheritedBySettingsBase())
+            {
+                tip = "implements [IEditOnProjectSettings] but is not inherited by [SettingsBase<>]";
+                return false;
+            }
+
             if (!type.IsSealed)
             {
-                Debug.LogError($"{type.FullName} is inherited by SettingsBase<T> but is not sealed");
+                tip = "is inherited by [SettingsBase<>] but is not [sealed]";
                 return false;
             }
 
             return true;
+
+            bool IsInheritedBySettingsBase()
+            {
+                Type @base = type.BaseType;
+                if (@base == null) return false;
+                if (!@base.IsGenericType) return false;
+                if (@base.GetGenericTypeDefinition() != typeof(SettingsBase<>)) return false;
+                return true;
+            }
         }
     }
 }
